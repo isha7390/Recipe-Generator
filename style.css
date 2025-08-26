@@ -1,0 +1,98 @@
+*{
+    border:0px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    
+}
+
+h1 {
+    background-color: #ff5722;
+    color:#fff ;
+    
+    
+ }
+
+ body{
+    background-color: #ff5722;
+ }
+
+
+.search-box{
+
+    width:600px;
+    background-color: #fff;
+    margin: 50px auto 0;
+    border-radius: 30px;
+
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    padding: 25px 45px;
+
+}
+
+input{
+    flex:1;
+    height: 30px;
+    background: transparent;
+    border:0;
+    outline: 0;
+    font-size:18px;
+    color: black;
+}
+
+button{
+    background: transparent;
+    border: 0;
+    outline:0;
+
+}
+
+.result-box ul{
+    border-top: 1px solid #999;
+    padding: 10px 10px;
+}
+
+.result-box ul li{
+    list-style: none;
+    border-radius: 10px;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.result-box ul li:hover {
+    background:#ff5722 ;
+    color:white;
+
+}
+
+.ingredient-box{
+    width:600px;
+    background-color: #fff;
+    margin: 50px auto 0;
+    border-radius: 30px;
+    color: black;
+}
+
+.ingredient-box ul{
+    
+    padding: 15px 30px;
+}
+
+.ingredient-box ul li{
+    list-style:disc;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredient-box ul li:hover {
+    background:#ff5722 ;
+    color:white;
+
+}
+
