@@ -141,8 +141,9 @@ let availableKeywords = [
 const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const ingredientsBox = document.querySelector(".ingredient-box");
-const searchBox = document.querySelector(".search-box")
+const searchBox = document.querySelector(".search-box");
 
+//autocomplete searchbar
 inputBox.onkeyup = function(){
     let result= [];
     let input = inputBox.value;
@@ -161,6 +162,7 @@ inputBox.onkeyup = function(){
     
 }
 
+//displaying the keyword in the results box
 function displayKeyword(result){
     const content = result.map((element)=>{
         return "<li onclick = selectInput(this)>" + element + "</li>";
@@ -169,31 +171,54 @@ function displayKeyword(result){
     resultsBox.innerHTML = "<ul>"+ content.join('') +"</ul>";
 }
 
+//selecting the ingredeient
 function selectInput(element){
-    addIngredient(element.innerHTML);
+    addIngredient(element);
     inputBox.value = element.innerHTML;
     resultsBox.innerHTML = '';
     displayIngredient(searchBox);
 }
 
 
-let ingredients = [];
+let ingredients = []; // list of all the added ingredients
 
+//to add the ingredients
 function addIngredient(value){
     ingredients.push(value);
     console.log("I have taken in the ingredient");
 }
 
-
+//to display the ingredients in the ingredients box
 function displayIngredient(){
     const content = ingredients.map((element)=>{
-        return "<li >" + element + "<button class= > X </button> </li>";
+
+        return "<li >" + element.innerHTML + "<button > X </button> </li>";
+        
     });
     ingredientsBox.innerHTML="<ul>" + content.join('') + "</ul>";
+    inputBox.value = '';
+
+    
+
 }
 
 
-
+//to remove ingredients both from list and page 
+ ingredientsBox.addEventListener("click", function(event){ 
+    if(event.target.tagName === "BUTTON")
+    {
+        const li = event.target.parentElement;
+        li.remove();
+        let index = ingredients.indexOf(li);
+        ingredients.splice(index,1);
+        console.log(li);
+    }
+    //remove box when no ingredients
+    if(ingredients.length === 0)
+        {
+            ingredientsBox.innerHTML = '';
+        }
+})
 
 
 
