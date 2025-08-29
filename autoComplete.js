@@ -173,7 +173,7 @@ function displayKeyword(result){
 
 //selecting the ingredeient
 function selectInput(element){
-    addIngredient(element);
+    addIngredient(element.innerHTML);
     inputBox.value = element.innerHTML;
     resultsBox.innerHTML = '';
     displayIngredient(searchBox);
@@ -192,13 +192,12 @@ function addIngredient(value){
 function displayIngredient(){
     const content = ingredients.map((element)=>{
 
-        return "<li >" + element.innerHTML + "<button > X </button> </li>";
+        return "<li >" + element + "<button > X </button> </li>";
         
     });
     ingredientsBox.innerHTML="<ul>" + content.join('') + "</ul>";
-    inputBox.value = '';
-
-    
+    inputBox.value = '';   
+   
 
 }
 
@@ -219,6 +218,42 @@ function displayIngredient(){
             ingredientsBox.innerHTML = '';
         }
 })
+
+
+//to finish adding ingredients
+document.getElementById("finishAdding").addEventListener("click", function(event){
+
+    //to receive the recipes
+    const apiKey = "241dd7cd49e5457ab367b44d6d9c483a";
+    const ingredientsParam = ingredients.join(",+");
+
+    const ingredientURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientsParam}`;
+    console.log(ingredientURL)
+    fetch(ingredientURL, { 
+            headers: {
+                'X-API-Key': apiKey
+            }})
+        .then(response => response.json())
+
+        .then(recipeData=>{
+
+            const recipeTitles = recipeData.map(recipe => recipe.title);
+            console.log(recipeTitles);
+
+        })
+    if (ingredients.length > 0){
+     resultsBox.innerHTML ='';
+    searchBox.innerHTML ='';
+    ingredientsBox.innerHTML ='';   
+    }
+    
+
+
+})
+
+
+//-----------------------------------------
+//displaying the recipes 
 
 
 

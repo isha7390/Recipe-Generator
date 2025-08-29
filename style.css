@@ -6,25 +6,33 @@
 }
 
 h1 {
-    background-color: #ff5722;
-    color:#fff ;
+    background-color: #BED06E;
+    color:#5C4031 ;
     
     
  }
 
  body{
-    background-color: #ff5722;
+    background-color: #BED06E;
  }
 
 
 .search-box{
 
     width:600px;
-    background-color: #fff;
+    background-color: #7D983A;
     margin: 50px auto 0;
     border-radius: 30px;
+    color:#FFEEAB ;
 
 }
+
+.search-box button{
+    cursor: pointer;
+    color:#FFEEAB ;
+    font-size: 18px;
+}
+
 
 .row{
     display: flex;
@@ -40,7 +48,12 @@ input{
     border:0;
     outline: 0;
     font-size:18px;
-    color: black;
+    color: #FFEEAB ;
+}
+
+input ::placeholder{
+    color: #DCD5B9 !important; 
+    opacity:100 !important;
 }
 
 button{
@@ -58,22 +71,23 @@ button{
 .result-box ul li{
     list-style: none;
     border-radius: 10px;
-    padding: 15px 10px;
+    padding: 15px 15px;
     cursor: pointer;
 }
 
 .result-box ul li:hover {
-    background:#ff5722 ;
-    color:white;
+    background:#FFEEAB  ;
+    color:#7D983A;
+    border-radius: 10px;
 
 }
 
 .ingredient-box{
     width:600px;
-    background-color: #fff;
+    background-color: #6C5041;
     margin: 50px auto 0;
     border-radius: 30px;
-    color: black;
+    color: #FFEEAB ;
 }
 
 .ingredient-box ul{
@@ -91,8 +105,14 @@ button{
 }
 
 .ingredient-box ul li:hover {
-    background:#ff5722 ;
-    color:white;
+    background:#FFEEAB ;
+    color:#6C5041;
+    border-radius: 10px;
 
+}
+
+.ingredient-box ul li button{
+    cursor: pointer;
+    color:#6C5041;
 }
 
