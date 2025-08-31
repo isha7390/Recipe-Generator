@@ -115,4 +115,44 @@ button{
     cursor: pointer;
     color:#6C5041;
 }
+.recipe-container{
+
+    display: flex;
+    padding: 10px 10px;
+    gap:20px;
+    flex-wrap: wrap;
+    
+}
+
+.recipe-card{
+
+    border-radius: 10px;
+    background:#6C5041 ;
+    font-family: "Source Serif 4", serif;
+    color:#FFEEAB;
+    padding: 20px 20px;
+    width: 315px;
+    height:370px;
+
+}
+
+.recipe-card h3{
+
+    font-family:"Poppins", sans-serif; 
+    padding: 10px 10px;
+    font-size: medium;
+}
+
+.recipe-card img{
+
+    display: flex;
+    border-radius: 10px;
+    object-fit: contain;
+    margin: 20px auto ;
+
+}
+
+
+
+
 
