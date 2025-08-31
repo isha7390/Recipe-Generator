@@ -142,6 +142,12 @@ const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const ingredientsBox = document.querySelector(".ingredient-box");
 const searchBox = document.querySelector(".search-box");
+let ingredients = []; // list of all the added ingredients
+let unwantedIngredients = ["soy sauce","fish sauce" ]; //ingredients you want to exclude
+let recipes = [];
+let image =[];
+const container = document.getElementById("recipe");
+container.innerHTML= " ";
 
 //autocomplete searchbar
 inputBox.onkeyup = function(){
@@ -180,8 +186,6 @@ function selectInput(element){
 }
 
 
-let ingredients = []; // list of all the added ingredients
-
 //to add the ingredients
 function addIngredient(value){
     ingredients.push(value);
@@ -200,7 +204,6 @@ function displayIngredient(){
    
 
 }
-
 
 //to remove ingredients both from list and page 
  ingredientsBox.addEventListener("click", function(event){ 
@@ -227,34 +230,62 @@ document.getElementById("finishAdding").addEventListener("click", function(event
     const apiKey = "241dd7cd49e5457ab367b44d6d9c483a";
     const ingredientsParam = ingredients.join(",+");
 
-    const ingredientURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientsParam}`;
+    const ingredientURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientsParam}&ignorePantry=true`;
     console.log(ingredientURL)
     fetch(ingredientURL, { 
             headers: {
                 'X-API-Key': apiKey
             }})
         .then(response => response.json())
-
+       
         .then(recipeData=>{
 
-            const recipeTitles = recipeData.map(recipe => recipe.title);
-            console.log(recipeTitles);
+            //let extraIngredients =
+            let recipeTitles = recipeData.map(recipe => recipe.title);
+            let recipeImages = recipeData.map(recipe => recipe.image);
 
+            recipes = recipeTitles;
+            image = recipeImages;
+
+            displayRecipe(recipes,image);
         })
+
+        
+
+
+
     if (ingredients.length > 0){
      resultsBox.innerHTML ='';
     searchBox.innerHTML ='';
     ingredientsBox.innerHTML ='';   
     }
     
-
+    
+    console.log("this is after extracting the data");
 
 })
 
+//displaying the recipes
+function displayRecipe(recipes, images){
+    container.innerHTML=" ";
+    for (let i =0; i< recipes.length; i++ )
+    {
+        console.log("hello");
+        const recipeCard = document.createElement("div");
+        recipeCard.classList.add("recipe-card");
 
-//-----------------------------------------
-//displaying the recipes 
 
+        recipeCard.innerHTML =`
+        
+        <h3> ${recipes[i]}</h3>
+        <img src = ${images[i]}>
+        
+        `;
+
+        container.appendChild(recipeCard);
+        
+}
+}
 
 
 
