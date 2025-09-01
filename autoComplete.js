@@ -142,12 +142,15 @@ const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const ingredientsBox = document.querySelector(".ingredient-box");
 const searchBox = document.querySelector(".search-box");
+
 let ingredients = []; // list of all the added ingredients
 let unwantedIngredients = ["soy sauce","fish sauce" ]; //ingredients you want to exclude
 let recipes = [];
 let image =[];
 const container = document.getElementById("recipe");
 container.innerHTML= " ";
+//const filterResultBox = document.querySelector(".filterResult-box");
+//const filterInputBox = document.querySelector(".filterInput-box");
 
 //autocomplete searchbar
 inputBox.onkeyup = function(){
@@ -168,7 +171,7 @@ inputBox.onkeyup = function(){
     
 }
 
-//displaying the keyword in the results box
+//displaying the keyword in the results box (ingredient search)
 function displayKeyword(result){
     const content = result.map((element)=>{
         return "<li onclick = selectInput(this)>" + element + "</li>";
@@ -177,7 +180,7 @@ function displayKeyword(result){
     resultsBox.innerHTML = "<ul>"+ content.join('') +"</ul>";
 }
 
-//selecting the ingredeient
+//selecting the ingredeient (ingredient search)
 function selectInput(element){
     addIngredient(element.innerHTML);
     inputBox.value = element.innerHTML;
@@ -287,9 +290,45 @@ function displayRecipe(recipes, images){
 }
 }
 
+const button = document.getElementById("filter-button");
+const filterBar = document.getElementById("filter-bar");
 
+button.addEventListener("click", function(event){
+    filterBar.classList.toggle("active");
+})
 
+/*
+filterInputBox.onkeyup = function(){
+    let result= [];
+    let input = filterInputBox.value;
+    if(input.length){
+        result = availableKeywords.filter((keyword)=>{
+            return keyword.toLowerCase().startsWith(input.toLowerCase()) || keyword.includes(input.toLowerCase());
+        });
+        console.log(result);
+    }
+    displayKeyword(result)
 
+    if (!result.length){
+        filterResultBox.innerHTML ='';
+    }
+
+    
+}
+
+function displayKeyword(result){
+    const content = result.map((element)=>{
+        return "<li onclick = filterSelectInput(this)>" + element + "</li>";
+    });
+
+    filterResultBox.innerHTML = "<ul>"+ content.join('') +"</ul>";
+}
+
+function filterSelectInput(element){
+    filterInputBox.value = element.innerHTML;
+    filterResultBox.innerHTML = '';
+}
+*/
 
 
 

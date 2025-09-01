@@ -5,12 +5,15 @@
     
 }
 
-h1 {
+.logo {
     background-color: #BED06E;
     color:#5C4031 ;
-    
+    text-align:center;
+        
     
  }
+
+
 
  body{
     background-color: #BED06E;
@@ -52,8 +55,8 @@ input{
 }
 
 input ::placeholder{
-    color: #DCD5B9 !important; 
-    opacity:100 !important;
+    color: #DCD5B9 ; 
+    opacity:100 ;
 }
 
 button{
@@ -152,7 +155,44 @@ button{
 
 }
 
+#filter-bar{
+   left:-320px; 
+   position:absolute;
+   top: 60px;
+   bottom: 0;
+   background-color: #7D983A;
+   width:20%;
+   color:#FFEEAB;
+   border-radius: 10px;
+   transition: 0.5s ease;
+}
+
+#filter-bar.active{  
+    left: 0;
+    
+}
 
 
+#filter-button{
+    background-color: #5C4031;
+    border-radius:10px;
+    position: fixed;
+    padding:10px 10px;
+    align-items: left;
+    font-size: 17px;
+    color:#FFEEAB;
+    cursor:pointer;
+ }
 
-
+#filterInput-box{
+    margin: 0 auto 0;
+    background-color: #BED06E;
+    border-radius: 10px;
+    color: #5C4031;
+    border:0;
+    outline: 0;
+    font-size: 18px;
+    width: 200px;
+    height:35px;
+    padding: 10px 10px;
+}
