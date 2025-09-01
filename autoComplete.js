@@ -142,15 +142,15 @@ const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const ingredientsBox = document.querySelector(".ingredient-box");
 const searchBox = document.querySelector(".search-box");
-
 let ingredients = []; // list of all the added ingredients
-let unwantedIngredients = ["soy sauce","fish sauce" ]; //ingredients you want to exclude
+let excludedIngredients = []; //ingredients you want to exclude
 let recipes = [];
 let image =[];
 const container = document.getElementById("recipe");
 container.innerHTML= " ";
-//const filterResultBox = document.querySelector(".filterResult-box");
-//const filterInputBox = document.querySelector(".filterInput-box");
+const filterResultBox = document.querySelector(".filterResult-box");
+const filterInputBox = document.querySelector(".filterInput-box");
+const excludedIngredientsBox = document.querySelector(".exclude-box");
 
 //autocomplete searchbar
 inputBox.onkeyup = function(){
@@ -231,21 +231,26 @@ document.getElementById("finishAdding").addEventListener("click", function(event
 
     //to receive the recipes
     const apiKey = "241dd7cd49e5457ab367b44d6d9c483a";
-    const ingredientsParam = ingredients.join(",+");
+    const ingredientsParam = ingredients.join(", ");
+    const excludedIngredientsParam = excludedIngredients.join(", ");
 
-    const ingredientURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientsParam}&ignorePantry=true`;
+    const ingredientURL = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=milk&excludeingredients=${ingredientsParam}&addRecipeInformation=true&addRecipeInstructions=true`;
     console.log(ingredientURL)
     fetch(ingredientURL, { 
             headers: {
-                'X-API-Key': apiKey
+                'X-API-Key': apiKey ,
+                'Content-Type': "application/json"    
+
             }})
         .then(response => response.json())
        
         .then(recipeData=>{
 
+            const results = recipeData.results;
+
             //let extraIngredients =
-            let recipeTitles = recipeData.map(recipe => recipe.title);
-            let recipeImages = recipeData.map(recipe => recipe.image);
+            let recipeTitles = results.map(recipe => recipe.title);
+            let recipeImages = results.map(recipe => recipe.image);
 
             recipes = recipeTitles;
             image = recipeImages;
@@ -297,7 +302,7 @@ button.addEventListener("click", function(event){
     filterBar.classList.toggle("active");
 })
 
-/*
+
 filterInputBox.onkeyup = function(){
     let result= [];
     let input = filterInputBox.value;
@@ -307,7 +312,7 @@ filterInputBox.onkeyup = function(){
         });
         console.log(result);
     }
-    displayKeyword(result)
+    filterDisplayKeyword(result)
 
     if (!result.length){
         filterResultBox.innerHTML ='';
@@ -316,7 +321,7 @@ filterInputBox.onkeyup = function(){
     
 }
 
-function displayKeyword(result){
+function filterDisplayKeyword(result){
     const content = result.map((element)=>{
         return "<li onclick = filterSelectInput(this)>" + element + "</li>";
     });
@@ -325,11 +330,40 @@ function displayKeyword(result){
 }
 
 function filterSelectInput(element){
+    excludedIngredients.push(element.innerHTML);
+    console.log("I have taken the ingredient to exclude")
     filterInputBox.value = element.innerHTML;
     filterResultBox.innerHTML = '';
+    filterDisplayIngredient();
 }
-*/
 
+function filterDisplayIngredient(){
+    const content = excludedIngredients.map((element)=>{
+
+        return "<li >" + element + "<button > X </button> </li>";
+        
+    });
+    excludedIngredientsBox.innerHTML="<ul>" + content.join('') + "</ul>";
+    filterInputBox.value = '';   
+   
+
+}
+
+ excludedIngredientsBox.addEventListener("click", function(event){ 
+    if(event.target.tagName === "BUTTON")
+    {
+        const li = event.target.parentElement;
+        li.remove();
+        let index = excludedIngredients.indexOf(li);
+        excludedIngredients.splice(index,1);
+        console.log(li);
+    }
+    //remove box when no ingredients
+    if(excludedIngredients.length === 0)
+        {
+            excludedIngredientsBox.innerHTML = '';
+        }
+})
 
 
 

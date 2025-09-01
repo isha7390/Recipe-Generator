@@ -157,7 +157,7 @@ button{
 
 #filter-bar{
    left:-320px; 
-   position:absolute;
+   position:fixed;
    top: 60px;
    bottom: 0;
    background-color: #7D983A;
@@ -169,6 +169,7 @@ button{
 
 #filter-bar.active{  
     left: 0;
+    margin: 0 auto 0;
     
 }
 
@@ -184,7 +185,7 @@ button{
     cursor:pointer;
  }
 
-#filterInput-box{
+.filterInput-box{
     margin: 0 auto 0;
     background-color: #BED06E;
     border-radius: 10px;
@@ -195,4 +196,29 @@ button{
     width: 200px;
     height:35px;
     padding: 10px 10px;
+}
+
+.exclude-box ul{
+    border-top: 1px transparent #999;
+    padding: 10px 10px;
+    cursor:pointer;
+}
+
+.exclude-box ul li{
+    list-style: none;
+    border-radius: 10px;
+    padding: 15px 15px;
+    cursor: pointer;
+}
+
+
+
+.exclude-box ul li button{
+    cursor: pointer;
+    color:#FFEEAB;
+}
+
+.exclude-box ul li:hover{
+    background-color: #5C4031;
+    color: #FFEEAB;
 }
