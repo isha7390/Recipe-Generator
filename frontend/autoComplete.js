@@ -230,18 +230,14 @@ function displayIngredient(){
 document.getElementById("finishAdding").addEventListener("click", function(event){
 
     //to receive the recipes
-    const apiKey = "241dd7cd49e5457ab367b44d6d9c483a";
-    const ingredientsParam = ingredients.join(", ");
-    const excludedIngredientsParam = excludedIngredients.join(", ");
+    const ingredientsParam = ingredients.join(",");
+    const excludedIngredientsParam = excludedIngredients.join(",");
 
-    const ingredientURL = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=milk&excludeingredients=${ingredientsParam}&addRecipeInformation=true&addRecipeInstructions=true`;
-    console.log(ingredientURL)
-    fetch(ingredientURL, { 
-            headers: {
-                'X-API-Key': apiKey ,
-                'Content-Type': "application/json"    
+    const ingredientURL = `http://localhost:3000/recipeGenerator?includeIngredients=${ingredientsParam}&excludeIngredients=${excludedIngredientsParam}&addRecipeInformation=true&addRecipeInstructions=true&instructionsRequired=true`;
+    //console.log(ingredientURL)
+    //fetch('/recipeGenerator')
+    fetch(ingredientURL) 
 
-            }})
         .then(response => response.json())
        
         .then(recipeData=>{
