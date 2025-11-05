@@ -188,37 +188,49 @@ button{
     background-color:#7D983A;
     border-radius: 10px;
     text-align:left;
-    width: 75vw;
+    width: 75%;
     height: 75vh;
-    padding-left:2.5vw;
+    padding-left:2vw;
     padding-top:2.5vh;
+    overflow-y: auto;
+    display: flex;
 }
 
 .recipe-details .inner img{
-    position:absolute;
     top:5vh; right:5vw; 
     margin:0;
-    width :25vw;
+    width :25%;
     height:auto;
-    border-radius: 10px;
+    flex-shrink: 0;
+    margin:20px;
+    object-fit: contain;
+
+}
+
+.recipe-details .text-wrapper{
+    text-align: left;
+    flex-grow:1;
+    max-height:100% ;
+    overflow-y: auto;
+    word-wrap: break-word;
 
 }
 
 #filter-bar{
    left:-320px; 
    position:fixed;
-   top: 60px;
+   top: 10vh;
    bottom: 0;
    background-color: #7D983A;
    width:20%;
    color:#FFEEAB;
-   border-radius: 10px;
+   border-radius: 7px;
    transition: 0.5s ease;
 }
 
 #filter-bar.active{  
     left: 0;
-    margin: 0 auto 0;
+    margin: 1vw;
     
 }
 

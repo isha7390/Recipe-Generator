@@ -270,6 +270,7 @@ function displayRecipe(results){
 
     console.log(results);
 
+    
 
     for( let r =0; r<results.length; r++)
     {
@@ -282,7 +283,31 @@ function displayRecipe(results){
 
         const recipeCard = document.createElement("div");
         recipeCard.classList.add("recipe-card");
+        const stepsArray = result.analyzedInstructions[0].steps;
 
+        let instructions="<ol>";
+
+        for(let p =0; p<stepsArray.length; p++)
+        {
+            instructions  += `<li>${stepsArray[p].step}</li>`;
+        }
+        instructions+="</ol>";
+
+      /*  const ingredientsArray = result.analyzedInstructions[0].steps;
+        let recipeIngredients = "<ul>";
+
+        for(let k =0; k<ingredientsArray.length; k++)
+        {
+            for(let j =0; j<ingredientsArray[k].length;k++)
+            {
+                if(ingredientsArray[k].ingredients == "name")
+                {
+                    recipeIngredients += `<li>${ingredientsArray[k].ingredients[j].name}</li>`;
+                }
+            }
+            
+        }
+        recipeIngredients+= "</ul>";*/
 
         recipeCard.innerHTML =`
         
@@ -295,12 +320,14 @@ function displayRecipe(results){
             recipeDetails.classList.add("open");
             recipeDetails.innerHTML = `
                     <div class = "inner">
+                    <div class="text-wrapper">
                     <div class="close-button" id="close-button">X</div>
                     <h3> ${result.title}</h3>
-                    <img src = ${result.image}>
-                    <h4> ${result.title}</h4>
                     <h4>Servings: ${result.servings}</h4>
                     <h4>Cooking Time: ${result.cookingMinutes}</h4>
+                    <p>${instructions}</p>
+                    </div>
+                    <img src = ${result.image}>
                     </div>
                 `;
             const closeButton = document.getElementById("close-button");
