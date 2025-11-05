@@ -19,7 +19,7 @@ How to Use:
 2. If you want to exclude certain ingredients, click the Filters button in the top left corner and search for those ingredients
 3. After you've included and excluded your ingredients, click Done in the Search Bar
 4. 50 recipes including/excluding the entered ingredients will show up as cards. Click on the card whose reecipe you wish to view
-5. On clicking the card, you will see cooking time, servings, ingredients required, and the instructions 
+5. On clicking the card, you will see cooking time, servings, ingredients required, and the instructions for the chosen recipe!
 
 
 
