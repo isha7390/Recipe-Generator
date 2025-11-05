@@ -151,6 +151,8 @@ container.innerHTML= " ";
 const filterResultBox = document.querySelector(".filterResult-box");
 const filterInputBox = document.querySelector(".filterInput-box");
 const excludedIngredientsBox = document.querySelector(".exclude-box");
+const recipeDetails = document.getElementById("recipe-details");
+//const closeButton = document.getElementById("close-button");
 
 //autocomplete searchbar
 inputBox.onkeyup = function(){
@@ -244,14 +246,7 @@ document.getElementById("finishAdding").addEventListener("click", function(event
 
             const results = recipeData.results;
 
-            //let extraIngredients =
-            let recipeTitles = results.map(recipe => recipe.title);
-            let recipeImages = results.map(recipe => recipe.image);
-
-            recipes = recipeTitles;
-            image = recipeImages;
-
-            displayRecipe(recipes,image);
+            displayRecipe(results);
         })
 
         
@@ -270,25 +265,61 @@ document.getElementById("finishAdding").addEventListener("click", function(event
 })
 
 //displaying the recipes
-function displayRecipe(recipes, images){
+function displayRecipe(results){
     container.innerHTML=" ";
-    for (let i =0; i< recipes.length; i++ )
+
+    console.log(results);
+
+
+    for( let r =0; r<results.length; r++)
     {
-        console.log("hello");
+        let result = results[r];
+        console.log(result.title);
+        console.log(result.image);
+        console.log(result.servings);
+        console.log(result.cookingMinutes);
+        console.log("-----------");
+
         const recipeCard = document.createElement("div");
         recipeCard.classList.add("recipe-card");
 
 
         recipeCard.innerHTML =`
         
-        <h3> ${recipes[i]}</h3>
-        <img src = ${images[i]}>
+        <h3> ${result.title}</h3>
+        <img src = ${result.image}>
         
         `;
+        recipeCard.addEventListener("click", function(event){
+            console.log("this is after the card has been clicked.");
+            recipeDetails.classList.add("open");
+            recipeDetails.innerHTML = `
+                    <div class = "inner">
+                    <div class="close-button" id="close-button">X</div>
+                    <h3> ${result.title}</h3>
+                    <img src = ${result.image}>
+                    <h4> ${result.title}</h4>
+                    <h4>Servings: ${result.servings}</h4>
+                    <h4>Cooking Time: ${result.cookingMinutes}</h4>
+                    </div>
+                `;
+            const closeButton = document.getElementById("close-button");
+                    closeButton.addEventListener("click", function(event){
+                        recipeDetails.classList.remove("open");
+
+                        
+
+                    })
+
+        });
+        
+       
+
 
         container.appendChild(recipeCard);
         
-}
+    }
+
 }
 
 const button = document.getElementById("filter-button");
